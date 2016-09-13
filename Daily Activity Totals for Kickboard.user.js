@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Daily Activity Totals for Kickboard
-// @version      0.4.2 (2016.09.12)
+// @version      0.4.3 (2016.09.12)
 // @description  Provides student absent/present counts on Kickboard for United Schools Network
 // @author       James Heyneman
 // @match        https://united.kickboardforteachers.com/culture/daily-activity
@@ -35,8 +35,8 @@ $(document).ready(function() {
                '<span style="font-weight:bold; font-size: 24px; color: #222;">' +
                      'Total: ' + total_students + '<br>' +
                      'Present: ' + present_students + '<br>' +
-                     'Absent: ' + absent_students +
-					 'Unmarked: ' + (total_students - absent_students - present_students) +
+                     'Absent: ' + absent_students + '<br> ' +
+                     'Unmarked: ' + (total_students - absent_students - present_students) +
                '</span>' +
           '</div>' +
       '</div>';
