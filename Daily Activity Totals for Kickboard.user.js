@@ -36,7 +36,7 @@ $(document).ready(function() {
                      'Total: ' + total_students + '<br>' +
                      'Present: ' + present_students + '<br>' +
                      'Absent: ' + absent_students +
-					 'Unmarked: ' + (total_students - absent_students - present_students) +
+                     'Unmarked: ' + (total_students - absent_students - present_students) +
                '</span>' +
           '</div>' +
       '</div>';
