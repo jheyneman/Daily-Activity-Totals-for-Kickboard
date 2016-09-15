@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Daily Activity Totals for Kickboard
-// @version      0.4.4 (2016.09.13)
+// @version      0.4.5 (2016.09.14)
 // @description  Provides student absent/present counts on Kickboard for United Schools Network
 // @author       James Heyneman
 // @match        https://united.kickboardforteachers.com/culture/daily-activity
@@ -17,20 +17,20 @@ $(document).ready(function() {
           '</div>' +
       '</div>' +
         '<div class="widget clear" id="totalsDiv"></div>' );
+  addGlobalStyle('#getTotals:hover { background-color: #86ab1e !important; }');
 
- $('#getTotals').click(function(){
-  var totals_div = document.getElementById('totalsDiv');
+  $('#getTotals').click(function(){
+    var totals_div = document.getElementById('totalsDiv');
+    var student_list_elements = document.getElementsByClassName("detail clear");
+    var present_elements = document.getElementsByClassName("present");
+    var present_elements_hidden = document.getElementsByClassName("present hidden");
+    var absent_elements = document.getElementsByClassName("absent");
+    var absent_elements_hidden = document.getElementsByClassName("absent hidden");
+    var present_students = present_elements.length - present_elements_hidden.length;
+    var absent_students = absent_elements.length - absent_elements_hidden.length;
+    var total_students = student_list_elements.length;
 
-  var student_list_elements = document.getElementsByClassName("detail clear");
-  var present_elements = document.getElementsByClassName("present");
-  var present_elements_hidden = document.getElementsByClassName("present hidden");
-  var absent_elements = document.getElementsByClassName("absent");
-  var absent_elements_hidden = document.getElementsByClassName("absent hidden");
-  var present_students = present_elements.length - present_elements_hidden.length;
-  var absent_students = absent_elements.length - absent_elements_hidden.length;
-  var total_students = student_list_elements.length;
-
-  totals_div.innerHTML = '<div class="widget clear">' +
+    totals_div.innerHTML = '<div class="widget clear">' +
           '<div style="margin-left: auto; margin-right: auto; width: 100%; text-align: center; line-height: 1.5;">' +
                '<span style="font-weight:bold; font-size: 24px; color: #222;">' +
                      'Total: ' + total_students + '<br>' +
@@ -42,6 +42,15 @@ $(document).ready(function() {
       '</div>';
 
   $( "#getTotals" ).attr('value', 'Update Totals');
+  });
 });
 
-});
+function addGlobalStyle(css) {
+    var head, style;
+    head = document.getElementsByTagName('head')[0];
+    if (!head) { return; }
+    style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = css;
+    head.appendChild(style);
+}
